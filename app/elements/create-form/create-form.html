@@ -1,0 +1,29 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<polymer-element name="create-form" attributes="">
+  <template>
+    <link rel="stylesheet" href="create-form.css">
+    <div class="heading" for="collapse1" on-click="{{toggle}}">Header 1</div>
+    <core-collapse id="collapse1" opened="true">
+      <div class="content">
+        <div>Content 1</div>
+      </div>
+    </core-collapse>
+    <div class="heading" for="collapse2" on-click="{{toggle}}">Header 2</div>
+    <core-collapse id="collapse2" opened="true">
+      <div class="content" opened="true">
+        <div>Content 2</div>
+      </div>
+    </core-collapse>
+  </template>
+  <script>
+    (function () {
+      Polymer('create-form', {
+        toggle: function (event) {
+          var name = event.currentTarget.getAttribute('for');
+          this.$[name].toggle();
+        }
+      });
+    })();
+  </script>
+</polymer-element>

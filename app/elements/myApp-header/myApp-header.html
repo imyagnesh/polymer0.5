@@ -1,0 +1,29 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<polymer-element name="myApp-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <core-toolbar class="medium-tall">
+      <paper-icon-button icon="menu"></paper-icon-button>
+      <div flex on-tap="_onTapHome">My App</div>
+      <div class="bottom fit" horizontal layout>
+        <paper-tabs flex self-end>
+          <template repeat="{{data in value}}">
+            <paper-tab>{{data.text}}</paper-tab>
+          </template>
+        </paper-tabs>
+      </div>
+    </core-toolbar>
+  </template>
+  <script>
+    (function () {
+      Polymer('myApp-header', {
+        value:null
+      });
+    })();
+  </script>
+</polymer-element>

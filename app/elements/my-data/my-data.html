@@ -1,0 +1,14 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<polymer-element name="my-data" attributes="items">
+  <script>
+    (function () {
+      Polymer({
+        ready: function () {
+          this.items = [{ text: 'Create Form',routeURL:'/',routeName:'createForm' },
+            { text: 'View Form',routeURL:'/viewForm',routeName:'viewForm' }]
+        }
+      });
+    })();
+  </script>
+</polymer-element>

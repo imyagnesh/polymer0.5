@@ -1,0 +1,122 @@
+<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+
+<polymer-element name='card-block'>
+  <template>
+    <style>
+      :host {
+        display: block;
+        position: relative;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .card {
+        position: relative;
+        display: inline-block;
+        float: left;
+        border-radius: 2px;
+        background-color: #ffffff;
+        /*margin: 0 8px 8px 0;*/
+        width: 100%;
+        max-width: 300px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      }
+      .card-header {
+        padding: 16px;
+      }
+      .card-header img {
+        float: left;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+      .card-header h1 {
+        font-size: 24px;
+        font-weight: 100;
+        color: rgba(0,0,0,0.7);
+      }
+      .card-header h2 {
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(0,0,0,0.3);
+      }
+      .card-content {
+        position: relative;
+        padding: 16px;
+        font-size: 14px;
+      }
+      .card-content p {
+        padding: 2px 0;
+      }
+      .card-content .supporting-text {
+        font-size: 14px;
+        color: rgba(0,0,0,0.4);
+      }
+      .card-action {
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 10px 8px;
+      }
+      .card a{
+        font-weight: bold;
+      }
+      a.link {
+        color: #ff6f00;
+        padding: 8px 14px;
+      }
+      a.btn {
+        padding: 8px 14px;
+        min-width: 80px;
+        background-color: #ff6f00;
+      }
+      .link {
+        color: #ff6f00;
+      }
+      btn {
+        min-width: 80px;
+        background-color: #ff6f00;
+      }
+      .rich-media {
+        display: block;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .rich-media img {
+        width: 100%;
+        display: block;
+      }
+      .rich-media .supporting-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 10px 16px;
+        background-color: rgba(0,0,0,0.3);
+        color: #f9f9f9;
+      }
+      .danger-link {
+        color: #ffc107;
+      }
+      .primary-link {
+        color: #03a9f4;
+      }
+      .danger-btn {
+        background-color: #ffc107;
+        color: white;
+      }
+      .primary-btn {
+        background-color: #03a9f4;
+        color: white;
+      }
+    </style>
+    <div class='card'>
+      <content></content>
+    </div>
+  </template>
+  <script>
+    Polymer('card-block', {});
+  </script>
+</polymer-element>

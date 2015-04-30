@@ -1,0 +1,27 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<polymer-element name="my-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <my-data items="{{list}}"></my-data>
+    <myApp-header items="{{list}}" id="header"></myApp-header>
+    <create-form></create-form>
+  </template>
+  <script>
+    (function () {
+      Polymer('my-app', {
+        ready: function () {
+          // Initialize the instance's "list" property to empty array.
+          this.list = this.list || [];
+        },
+        listChanged: function () {
+          this.$.header.value = this.list;
+        }
+      });
+    })();
+  </script>
+</polymer-element>
