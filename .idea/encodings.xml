@@ -5,6 +5,10 @@
     <file url="file://$PROJECT_DIR$/app/elements/create-form/create-form.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/elements/elements.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/elements/my-app/my-app.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/elements/my-data/my-data.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/elements/myApp-header/myApp-header.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/elements/route.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/elements/route.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/elements/view-form/view-form.html" charset="UTF-8" />
   </component>
 </project>

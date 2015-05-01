@@ -1,12 +1,101 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<polymer-element name="my-data" attributes="items">
+<polymer-element name="my-data" attributes="items groupData">
   <script>
     (function () {
       Polymer({
         ready: function () {
-          this.items = [{ text: 'Create Form',routeURL:'/',routeName:'createForm' },
-            { text: 'View Form',routeURL:'/viewForm',routeName:'viewForm' }]
+          this.items = [{ text: 'Create Form',routeURL:'/createForm',routeName:'createForm' },
+            { text: 'View Form',routeURL:'/viewForm',routeName:'viewForm' }];
+
+          this.groupData = [
+            {
+              id:'basicListInfo',
+              title: 'Basic Listing Information',
+              isOpen: true,
+              content: [{
+                name: 'Ship From Country',
+                isSelected: true,
+                AttachedElement: {
+                  element: 'input',
+                  label: 'User Name',
+                  attributes: {
+                    'id': 'userName',
+                    'type': 'text',
+                    'ng-model': '',
+                    'name': 'userName',
+                    'required': '',
+                    'ng-required': 'true',
+                    'ng-minlength': '',
+                    'Placeholder': 'User Name',
+                    'class': 'form-control'
+                  }
+                }
+              },
+                {
+                  name: 'Ship From Zip Code',
+                  isSelected: true,
+                  AttachedElement: {
+                    element: 'input',
+                    label: 'Password',
+                    attributes: {
+                      'id': 'password',
+                      'type': 'password',
+                      'ng-model': '',
+                      'name': 'password',
+                      'required': '',
+                      'ng-required': 'true',
+                      'ng-minlength': '',
+                      'Placeholder': 'Password',
+                      'class': 'form-control'
+                    }
+                  }
+                }]
+            },
+            {
+              id:'basicListInfo1',
+              title: 'Basic Listing Information1',
+              isOpen: true,
+              content: [{
+                name: 'Ship From Country1',
+                isSelected: true,
+                AttachedElement: {
+                  element: 'input',
+                  label: 'User Name',
+                  attributes: {
+                    'id': 'userName',
+                    'type': 'text',
+                    'ng-model': '',
+                    'name': 'userName',
+                    'required': '',
+                    'ng-required': 'true',
+                    'ng-minlength': '',
+                    'Placeholder': 'User Name',
+                    'class': 'form-control'
+                  }
+                }
+              },
+                {
+                  name: 'Ship From Zip Code1',
+                  isSelected: true,
+                  AttachedElement: {
+                    element: 'input',
+                    label: 'Password',
+                    attributes: {
+                      'id': 'password',
+                      'type': 'password',
+                      'ng-model': '',
+                      'name': 'password',
+                      'required': '',
+                      'ng-required': 'true',
+                      'ng-minlength': '',
+                      'Placeholder': 'Password',
+                      'class': 'form-control'
+                    }
+                  }
+                }]
+            }
+          ];
         }
       });
     })();

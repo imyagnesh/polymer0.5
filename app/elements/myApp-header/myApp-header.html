@@ -1,4 +1,4 @@
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
 
 <polymer-element name="myApp-header">
   <template>
@@ -9,20 +9,33 @@
     </style>
     <core-toolbar class="medium-tall">
       <paper-icon-button icon="menu"></paper-icon-button>
-      <div flex on-tap="_onTapHome">My App</div>
+      <div flex on-click="{{_onTapHome}}">My App</div>
       <div class="bottom fit" horizontal layout>
-        <paper-tabs flex self-end>
-          <template repeat="{{data in value}}">
-            <paper-tab>{{data.text}}</paper-tab>
-          </template>
-        </paper-tabs>
+          <paper-tabs flex self-end>
+            <template repeat="{{data in value}}">
+              <paper-tab route="{{data.routeURL}}" on-click="{{_onTabTapped}}">{{data.text}}</paper-tab>
+            </template>
+          </paper-tabs>
       </div>
     </core-toolbar>
   </template>
   <script>
     (function () {
       Polymer('myApp-header', {
-        value:null
+        value: null,
+        _onTabTapped: function(event) {
+          var routeURL = event.currentTarget.getAttribute('route');
+          // In addition to routing via a `more-route` element, more-routing's
+          // JavaScript API also exposes helpers:
+          MoreRouting.navigateTo(routeURL);
+          event.stopPropagation();
+        },
+        _onTapHome: function(event) {
+          // In addition to routing via a `more-route` element, more-routing's
+          // JavaScript API also exposes helpers:
+          MoreRouting.navigateTo('/');
+          event.stopPropagation();
+        }
       });
     })();
   </script>

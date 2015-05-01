@@ -1,28 +1,44 @@
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
 
 <polymer-element name="create-form" attributes="">
   <template>
     <link rel="stylesheet" href="create-form.css">
-    <div class="heading" for="collapse1" on-click="{{toggle}}">Header 1</div>
-    <core-collapse id="collapse1" opened="true">
-      <div class="content">
-        <div>Content 1</div>
-      </div>
-    </core-collapse>
-    <div class="heading" for="collapse2" on-click="{{toggle}}">Header 2</div>
-    <core-collapse id="collapse2" opened="true">
-      <div class="content" opened="true">
-        <div>Content 2</div>
-      </div>
-    </core-collapse>
+    <paper-input label="Search" value="{{ searchTerm }}" floatingLabel></paper-input>
+    <div id="accordDiv">
+      <template repeat="{{data in value}}">
+        <div class="heading" for="{{data.id}}" on-click="{{toggle}}">{{data.title}}</div>
+        <core-collapse id="{{data.id}}" opened="{{data.isOpen}}">
+          <div class="content">
+            <section horizontal layout>
+              <template repeat="{{ c in data.content | filter(searchTerm)}}">
+                <core-label center horizontal layout>
+                  <paper-checkbox class="blue" label="{{ data.content[c].name }}" checked="{{ data.content[c].isSelected }}"></paper-checkbox>
+                </core-label>
+              </template>
+            </section>
+          </div>
+        </core-collapse>
+      </template>
+    </div>
   </template>
   <script>
     (function () {
       Polymer('create-form', {
-        toggle: function (event) {
-          var name = event.currentTarget.getAttribute('for');
-          this.$[name].toggle();
+        toggle: function (event, detail, sender) {
+          var idFor = sender.attributes.for.value;
+          /** @namespace this.$.accordDiv */
+          this.$.accordDiv.querySelector('#' + idFor).toggle();
+        },
+        value: null,
+
+        filter: function (object,searchTerm) {
+            var data = this.data;
+            return Object.keys(object).filter(function(item){
+              if(!searchTerm) return true;
+              return (data.content[item].name.toLowerCase().indexOf(searchTerm.toString().toLowerCase()) !== -1);
+            });
         }
+
       });
     })();
   </script>
