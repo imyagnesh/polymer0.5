@@ -1,102 +1,118 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<polymer-element name="my-data" attributes="items groupData">
+
+<polymer-element name="my-data" attributes="data">
   <script>
     (function () {
+      var items = [{ text: 'Create Form',routeURL:'/createForm',routeName:'createForm' },
+        { text: 'View Form',routeURL:'/viewForm',routeName:'viewForm' }];
+      var groupdata = [
+        {
+          id:'basicListInfo',
+          title: 'Basic Listing Information',
+          isOpen: true,
+          content: [{
+            name: 'Ship From Country',
+            isSelected: true,
+            AttachedElement: {
+              element: 'input',
+              label: 'User Name',
+              attributes: {
+                'id': 'userName',
+                'type': 'text',
+                'ng-model': '',
+                'name': 'userName',
+                'required': '',
+                'ng-required': 'true',
+                'ng-minlength': '',
+                'Placeholder': 'User Name',
+                'class': 'form-control'
+              }
+            }
+          },
+            {
+              name: 'Ship From Zip Code',
+              isSelected: true,
+              AttachedElement: {
+                element: 'input',
+                label: 'Password',
+                attributes: {
+                  'id': 'password',
+                  'type': 'password',
+                  'ng-model': '',
+                  'name': 'password',
+                  'required': '',
+                  'ng-required': 'true',
+                  'ng-minlength': '',
+                  'Placeholder': 'Password',
+                  'class': 'form-control'
+                }
+              }
+            }]
+        },
+        {
+          id:'basicListInfo1',
+          title: 'Basic Listing Information1',
+          isOpen: true,
+          content: [{
+            name: 'Ship From Country1',
+            isSelected: true,
+            AttachedElement: {
+              element: 'input',
+              label: 'User Name',
+              attributes: {
+                'id': 'userName',
+                'type': 'text',
+                'ng-model': '',
+                'name': 'userName',
+                'required': '',
+                'ng-required': 'true',
+                'ng-minlength': '',
+                'Placeholder': 'User Name',
+                'class': 'form-control'
+              }
+            }
+          },
+            {
+              name: 'Ship From Zip Code1',
+              isSelected: true,
+              AttachedElement: {
+                element: 'input',
+                label: 'Password',
+                attributes: {
+                  'id': 'password',
+                  'type': 'password',
+                  'ng-model': '',
+                  'name': 'password',
+                  'required': '',
+                  'ng-required': 'true',
+                  'ng-minlength': '',
+                  'Placeholder': 'Password',
+                  'class': 'form-control'
+                }
+              }
+            }]
+        }
+      ];
+
       Polymer({
         ready: function () {
-          this.items = [{ text: 'Create Form',routeURL:'/createForm',routeName:'createForm' },
-            { text: 'View Form',routeURL:'/viewForm',routeName:'viewForm' }];
+          this.data = this;
+          this.items = this._getTabDetails();
+          this.groupData = this._getGroupDetails();
+//          this.contentById = this._getContentByGroupId;
 
-          this.groupData = [
-            {
-              id:'basicListInfo',
-              title: 'Basic Listing Information',
-              isOpen: true,
-              content: [{
-                name: 'Ship From Country',
-                isSelected: true,
-                AttachedElement: {
-                  element: 'input',
-                  label: 'User Name',
-                  attributes: {
-                    'id': 'userName',
-                    'type': 'text',
-                    'ng-model': '',
-                    'name': 'userName',
-                    'required': '',
-                    'ng-required': 'true',
-                    'ng-minlength': '',
-                    'Placeholder': 'User Name',
-                    'class': 'form-control'
-                  }
-                }
-              },
-                {
-                  name: 'Ship From Zip Code',
-                  isSelected: true,
-                  AttachedElement: {
-                    element: 'input',
-                    label: 'Password',
-                    attributes: {
-                      'id': 'password',
-                      'type': 'password',
-                      'ng-model': '',
-                      'name': 'password',
-                      'required': '',
-                      'ng-required': 'true',
-                      'ng-minlength': '',
-                      'Placeholder': 'Password',
-                      'class': 'form-control'
-                    }
-                  }
-                }]
-            },
-            {
-              id:'basicListInfo1',
-              title: 'Basic Listing Information1',
-              isOpen: true,
-              content: [{
-                name: 'Ship From Country1',
-                isSelected: true,
-                AttachedElement: {
-                  element: 'input',
-                  label: 'User Name',
-                  attributes: {
-                    'id': 'userName',
-                    'type': 'text',
-                    'ng-model': '',
-                    'name': 'userName',
-                    'required': '',
-                    'ng-required': 'true',
-                    'ng-minlength': '',
-                    'Placeholder': 'User Name',
-                    'class': 'form-control'
-                  }
-                }
-              },
-                {
-                  name: 'Ship From Zip Code1',
-                  isSelected: true,
-                  AttachedElement: {
-                    element: 'input',
-                    label: 'Password',
-                    attributes: {
-                      'id': 'password',
-                      'type': 'password',
-                      'ng-model': '',
-                      'name': 'password',
-                      'required': '',
-                      'ng-required': 'true',
-                      'ng-minlength': '',
-                      'Placeholder': 'Password',
-                      'class': 'form-control'
-                    }
-                  }
-                }]
-            }
-          ];
+        },
+        _getTabDetails: function () {
+          return items;
+        },
+        _getGroupDetails: function () {
+          return groupdata;
+        },
+        _getContentByGroupId: function (id) {
+          return _.pluck(_.filter(groupdata, 'id', id), 'content');
         }
+
       });
     })();
   </script>

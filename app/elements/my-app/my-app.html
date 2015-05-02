@@ -8,12 +8,12 @@
         display: block;
       }
     </style>
-    <my-data items="{{list}}" groupData="{{grpData}}"></my-data>
-    <myApp-header items="{{list}}" id="header"></myApp-header>
+    <my-data data="{{appData}}"></my-data>
+    <myApp-header tabs="{{appData}}" id="header"></myApp-header>
     <more-route-selector>
       <core-pages>
-        <create-form groupData="{{grpData}}" id="createForm" route="createForm"></create-form>
-        <view-form groupData="{{grpData}}" id="viewForm" route="viewForm"></view-form>
+        <create-form groupDetails="{{appData}}" id="createForm" route="createForm"></create-form>
+        <view-form groupDetails="{{appData}}" id="viewForm" route="viewForm"></view-form>
       </core-pages>
     </more-route-selector>
   </template>
@@ -22,14 +22,7 @@
       Polymer('my-app', {
         ready: function () {
           // Initialize the instance's "list" property to empty array.
-          this.list = this.list || [];
-          this.grpData = this.grpData || [];
-        },
-        listChanged: function () {
-          this.$.header.value = this.list;
-          /** @namespace this.$.createForm */
-          this.$.createForm.value = this.grpData;
-          this.$.viewForm.value = this.grpData;
+          this.appData = this.appData || [];
         }
       });
     })();

@@ -1,6 +1,6 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<polymer-element name="myApp-header">
+<polymer-element name="myApp-header" attributes="tabs">
   <template>
     <style>
       :host {
@@ -12,7 +12,7 @@
       <div flex on-click="{{_onTapHome}}">My App</div>
       <div class="bottom fit" horizontal layout>
           <paper-tabs flex self-end>
-            <template repeat="{{data in value}}">
+            <template repeat="{{data in tabs.items}}">
               <paper-tab route="{{data.routeURL}}" on-click="{{_onTabTapped}}">{{data.text}}</paper-tab>
             </template>
           </paper-tabs>
@@ -22,7 +22,6 @@
   <script>
     (function () {
       Polymer('myApp-header', {
-        value: null,
         _onTabTapped: function(event) {
           var routeURL = event.currentTarget.getAttribute('route');
           // In addition to routing via a `more-route` element, more-routing's

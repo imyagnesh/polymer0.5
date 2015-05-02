@@ -1,18 +1,29 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<polymer-element name="create-form" attributes="">
+<polymer-element name="create-form" attributes="groupDetails">
   <template>
     <link rel="stylesheet" href="create-form.css">
     <paper-input label="Search" value="{{ searchTerm }}" floatingLabel></paper-input>
     <div id="accordDiv">
-      <template repeat="{{data in value}}">
+      <template repeat="{{data in groupDetails.groupData}}">
         <div class="heading" for="{{data.id}}" on-click="{{toggle}}">{{data.title}}</div>
         <core-collapse id="{{data.id}}" opened="{{data.isOpen}}">
           <div class="content">
             <section horizontal layout>
+              <core-label on-click="{{select}}">
+                Select All
+              </core-label>
+              <core-label on-click="{{select}}">
+                Deselect All
+              </core-label>
+            </section>
+            <section horizontal layout>
               <template repeat="{{ c in data.content | filter(searchTerm)}}">
                 <core-label center horizontal layout>
-                  <paper-checkbox class="blue" label="{{ data.content[c].name }}" checked="{{ data.content[c].isSelected }}"></paper-checkbox>
+                  <paper-checkbox class="blue" checked="{{ data.content[c].isSelected }}" for></paper-checkbox>
+                  <div flex>
+                    <html-echo html="{{data.content[c].name | highlight(searchTerm)}}"></html-echo>
+                  </div>
                 </core-label>
               </template>
             </section>
@@ -30,15 +41,21 @@
           this.$.accordDiv.querySelector('#' + idFor).toggle();
         },
         value: null,
-
-        filter: function (object,searchTerm) {
-            var data = this.data;
-            return Object.keys(object).filter(function(item){
-              if(!searchTerm) return true;
-              return (data.content[item].name.toLowerCase().indexOf(searchTerm.toString().toLowerCase()) !== -1);
-            });
+        filter: function (object, searchTerm) {
+          var data = this.data;
+          return Object.keys(object).filter(function (item) {
+            if (!searchTerm) return true;
+            return (data.content[item].name.toLowerCase().indexOf(searchTerm.toString().toLowerCase()) !== -1);
+          });
+        },
+        highlight: function (input, searchTerm) {
+          if (searchTerm) input = input.replace(new RegExp('(' + searchTerm + ')', 'gi'),
+            '<span class="highlighted">$1</span>');
+          return input;
+        },
+        select: function (event, detail, sender) {
+//          console.log(this.groupDetails._getContentByGroupId('basicListInfo'));
         }
-
       });
     })();
   </script>
