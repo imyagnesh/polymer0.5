@@ -3,14 +3,21 @@
 <polymer-element name="view-form" attributes="groupDetails">
   <template>
     <link rel="stylesheet" href="view-form.css">
-    <h4>view form</h4>
-
+    <section>
+      <div class="content">
+        <template repeat="{{c in groupDetails.content}}">
+          <template if="{{c.isSelected}}">
+            <paper-input-decorator label="required" floatingLabel error="input is required!" autoValidate>
+              <input is="core-input" required>
+            </paper-input-decorator>
+          </template>
+        </template>
+      </div>
+    </section>
   </template>
   <script>
     (function () {
-      Polymer('view-form', {
-        value: null
-      });
+      Polymer('view-form', {});
     })();
   </script>
 </polymer-element>

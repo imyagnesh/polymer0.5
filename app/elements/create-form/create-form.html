@@ -1,5 +1,6 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
+
 <polymer-element name="create-form" attributes="groupDetails">
   <template>
     <link rel="stylesheet" href="create-form.css">
@@ -10,10 +11,10 @@
         <core-collapse id="{{data.id}}" opened="{{data.isOpen}}">
           <div class="content">
             <section horizontal layout>
-              <core-label on-click="{{select}}">
+              <core-label select="true" on-click="{{select}}">
                 Select All
               </core-label>
-              <core-label on-click="{{select}}">
+              <core-label select="false" on-click="{{select}}">
                 Deselect All
               </core-label>
             </section>
@@ -53,8 +54,12 @@
             '<span class="highlighted">$1</span>');
           return input;
         },
-        select: function (event, detail, sender) {
-//          console.log(this.groupDetails._getContentByGroupId('basicListInfo'));
+        select : function(e, detail, sender) {
+          var selected = sender.attributes.select.value;
+          var gc = e.target.templateInstance.model.data;
+          _.forEach(gc.content, function(n, key) {
+            n.isSelected = (selected === "true");
+          });
         }
       });
     })();

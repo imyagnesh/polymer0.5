@@ -48,6 +48,25 @@
                   'class': 'form-control'
                 }
               }
+            },
+            {
+              name: 'Ship From Zip Code 2',
+              isSelected: true,
+              AttachedElement: {
+                element: 'input',
+                label: 'Password',
+                attributes: {
+                  'id': 'password',
+                  'type': 'password',
+                  'ng-model': '',
+                  'name': 'password',
+                  'required': '',
+                  'ng-required': 'true',
+                  'ng-minlength': '',
+                  'Placeholder': 'Password',
+                  'class': 'form-control'
+                }
+              }
             }]
         },
         {
@@ -98,10 +117,10 @@
       Polymer({
         ready: function () {
           this.data = this;
+          this.groupId = '';
           this.items = this._getTabDetails();
           this.groupData = this._getGroupDetails();
-//          this.contentById = this._getContentByGroupId;
-
+          this.content = this._getContentDetails();
         },
         _getTabDetails: function () {
           return items;
@@ -109,10 +128,9 @@
         _getGroupDetails: function () {
           return groupdata;
         },
-        _getContentByGroupId: function (id) {
-          return _.pluck(_.filter(groupdata, 'id', id), 'content');
+        _getContentDetails: function () {
+          return _.flatten(_.pluck(groupdata, 'content'));
         }
-
       });
     })();
   </script>
